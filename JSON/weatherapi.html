@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather API </title>
+    <style>
+        .punit_success {
+            color: darkgreen;
+            
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid green;
+            border-radius: 5px;
+        }
+
+        .punit_error {
+            color: red;
+            
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid red;
+            border-radius: 5px;
+        }
+
+        body {
+
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            margin: 20px;
+
+        }
+
+        #opp {
+
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid red;
+            border-radius: 5px;
+
+        }
+    </style>
+
+</head>
+
+<script>
+    function fetchWeatherData() {
+        const apiid = "b1314c78e5b65729a1b4dc4b2263a4a9";
+        const units = "metric";
+
+        const city = document.getElementById('cityInput').value;
+        //document.getElementById("myH1").style.color = "#ff0000";
+
+        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiid}&units=${units}`)
+            .then(response => response.json())
+            .then(data => {
+                // Process the weather data from the API response
+                console.log("First");
+                // alert(data.cod);
+                if (data.cod == 200)
+
+                    displayWeatherData(data);
+                else
+                    displayError(data);
+
+            })
+            .catch(error => {
+                // Handle any errors that occur during the API call
+                console.error('Error:', error);
+                console.table(error);
+                displayError(error);
+            });
+    }
+
+    function displayError(error) {
+        
+        weatherDataContainer.innerHTML = error.message  +  error.cod;
+        weatherDataContainer.classList.remove("punit_error");
+        weatherDataContainer.classList.remove("punit_success");
+        weatherDataContainer.classList.add("punit_error");
+        document.getElementById("myH1").style.color = "#ff0000";
+    }
+    function displayWeatherData(data) {
+        
+        weatherDataContainer.innerHTML = `Temp: ${data.main.temp}<br>`;
+        weatherDataContainer.innerHTML += `Humidity: ${data.main.humidity}<br>`;
+        weatherDataContainer.innerHTML += `Icon:<img src="https://openweathermap.org/img/w/${data.weather[0].icon}.png"/> <br>`;
+        weatherDataContainer.classList.remove("punit_error");
+        weatherDataContainer.classList.remove("punit_success");
+        weatherDataContainer.classList.add("punit_success");
+        document.getElementById("myH1").style.color = "green";
+    }
+
+</script>
+
+<body>
+
+   <img src="Punit RRB Photo.jpg" width="20%" height="20%">
+    <h1 id = "myH1"> Check Weather Based on City </h1>
+
+
+    <input type="text" placeholder="Please Enter your City Name" id="cityInput">
+
+    <button onclick="fetchWeatherData()">Search City Weather</button>
+
+    <div id="weatherData"></div>
+
+    <div id="op"></div>
+<script>
+    const weatherDataContainer = document.getElementById('op');
+
+</script>
+</body>
+
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Films Fetch Example By Punit</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 10px;
+        }
+
+        #output {
+            margin-top: 10px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Films Fetch Example By Punit</h1>
+
+    <div>
+        <label for="characterId">Enter Character ID:</label>
+        <input type="text" id="characterId" placeholder="e.g., 1">
+        <button onclick="fetchCharacter()">Fetch Character</button>
+    </div>
+
+    <div id="output"></div>
+
+    <script>
+        function fetchCharacter() {
+            // Get the character ID from the input field
+            const characterId = document.getElementById('characterId').value;
+
+            // Construct the SWAPI URL for the specific character
+            // "https://swapi.py4e.com/api/films/1/"
+            // const swapiUrl = `https://swapi.py4e.com/api/people/${characterId}`;
+            const swapiUrl = "https://swapi.py4e.com/api/films/1/";
+            alert(swapiUrl);
+            console.log(swapiUrl);
+            // Fetch data from SWAPI using Fetch API
+            fetch(swapiUrl)
+                .then(response => {
+                    // Check if the response is successful (status code 200-299)
+                    if (!response.ok) {
+                        throw new Error(`Error: ${response.status} - ${response.statusText}`);
+                    }
+
+                    // Parse the JSON data from the response
+                    return response.json();
+                })
+                .then(characterData => {
+                    // Display character information on the page
+                    console.log(characterData);
+                    displayCharacterInfo(characterData);
+                })
+                .catch(error => {
+                    // Display an error message if there's an issue with the fetch
+                    displayError(error.message);
+                });
+        }
+
+        function displayCharacterInfo(characterData) {
+            const outputDiv = document.getElementById('output');
+            outputDiv.innerHTML = `
+        <h2>${characterData.producer}</h2>
+        <p><strong>Film Title :</strong> ${characterData.title} cm</p>
+        <p><strong>Director :</strong> ${characterData.director} kg</p>
+        <p><strong>Date Of Created:</strong> ${characterData.created}</p>
+      `;
+        }
+
+        function displayError(errorMessage) {
+            const outputDiv = document.getElementById('output');
+            outputDiv.innerHTML = `<p style="color: red;">${errorMessage}</p>`;
+        }
+    </script>
+</body>
+
+</html>

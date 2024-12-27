@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <input type="radio" name="game">
+    <br>
+
+    <input type="button" onclick="findName()" value="name">
+
+    <script>
+     
+     function findName()
+     {
+        var radioButtons = document.getElementsByName("game")
+        var n = radioButtons.length;
+
+        for(var i=0; i<=n-1; i++)
+     {
+        radioButtons[i].checked="true";
+     }
+     }
+
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<h1 id="result"></h1>
+
+    <input type = "number" id="t1">
+
+    <button onclick="CheckEvenorOdd()">CheckEvenorOdd</button>
+
+    <script>
+        const hr=document.getElementById("result");
+        const tx=document.getElementById("t1");
+
+
+      function CheckEvenorOdd()
+      {
+const num=Number(tx.value);
+    
+
+        if(num%2==0)
+      {
+        console.log( "The number is even" + num);
+        result.innerHTML= `${tx.value} is even`;
+      }
+      else
+      {
+        console.log("The number is odd" + num);
+        result.innerHTML= `${num} is odd`;
+      }
+      }
+
+    </script>
+    
+</body>
+</html>

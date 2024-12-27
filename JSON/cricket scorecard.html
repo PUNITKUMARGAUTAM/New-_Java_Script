@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricket Scorecard</title>
+    <script>
+        players = [
+            {
+
+                name: "Rahul Dravid",
+                age: 50,
+                scored: 8000,
+                wc: 2003
+
+            },
+
+            {
+
+                name: "Sachin Tendulkar",
+                age: 55,
+                scored: 10000,
+                wc: 2011
+
+            },
+
+            {
+
+                name: "Kapil dev",
+                age: 60,
+                scored: 15000,
+                wc: 1983
+
+            }
+
+        ];
+
+    </script>
+</head>
+
+<body>
+    Name <input type="text" id="txtName"><br>
+    Age <input type="text" id="txtAge"><br>
+    Score <input type="text" id="txtScore"><br>
+    WC <input type="text" id="txtWc"><br>
+
+    <button type="reset" onclick="removeElement()">Clear Value </button>
+    <input type="button" onclick="back()" value="<"><input onclick="front()" type="button" value=">">
+    <button onclick="createPlayer()"> Add End Player </button>
+    <script>
+        console.table(players);
+
+    </script>
+
+
+    <script>
+
+
+        let counter = 0;
+        const txtName = document.getElementById("txtName");
+        const txtAge = document.getElementById("txtAge");
+        const txtScore = document.getElementById("txtScore");
+        const txtWc = document.getElementById("txtWc");
+        function showPlayersData(pos) {
+
+
+            const player = players[pos];
+            txtName.value = player.name;
+            txtAge.value = player.age;
+            txtScore.value = player.scored;
+            txtWc.value = player.wc;
+        }
+        function back() {
+            if (counter <= 0) {
+                alert("Already at beginning, cannot move back");
+                return;
+            }
+            counter--;
+            // txtName.value = counter;
+            document.title = counter;
+            showPlayersData(counter);
+        }
+        function front() {
+            let limit = players.length;
+            if (counter >= limit - 1) {
+                alert("Already at end, cannot move further");
+                return;
+            }
+            counter++;
+            // txtName.value = counter;
+            document.title = counter;
+            showPlayersData(counter);
+
+
+        }
+
+        function removeElement() {
+            txtName.value = '';
+            txtAge.value = '';
+            txtScore.value = '';
+            txtWc.value = '';
+        }
+
+        function createPlayer() {
+            let newplayer = {
+
+                name: txtName.value,
+                age: Number(txtAge.value),
+                scored: Number(txtScore.value),
+                wc: Number(txtWc.value)
+
+            }
+            players.push(newplayer);
+            alert("New Cricketer Data Add Successfully");
+
+        }
+        showPlayersData(0);
+
+
+
+    </script>
+</body>
+
+</html>

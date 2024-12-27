@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Functions Example </title>
+</head>
+
+<script>
+
+    function fNoParams() {
+
+        var div = document.getElementById("output");
+        var output = "No Params";
+        div.innerHTML = output;
+
+    }
+
+    function addParams(a, b) {
+        var div = document.getElementById("output");
+        var output = "" + (a + b);
+        div.innerHTML = output;
+    }
+
+    function faddVariables1() {
+        alert(arguments);
+        console.table(arguments);
+        var output = "";
+        for (var i = 0; i <= arguments.length - 1; i++) {
+            output = output + arguments[i] + ",";
+            // output=output + arguments[i]+ ",";
+            div = document.getElementById("output");
+            div.innerHTML = output;
+        }
+    }
+
+        function faddVariables2() {
+            var div = document.getElementById("output").innerHTML = "";
+            var arr = [1, 2, 3, 4, 5];
+            arr.forEach(addNumbers);
+
+
+        }
+
+        function addNumbers(item, index)
+        {
+            var div = document.getElementById("output");
+            div.innerHTML += item + ",";
+        }
+
+        function callOtherFunctions() {
+            var f = Math.sqrt;
+            var output = f(100);
+
+            var div = document.getElementById("output").innerHTML = output;
+
+        }
+
+    
+
+
+</script>
+
+<body>
+
+    <input type="button" value="No Params" onclick="fNoParams()">
+    <div id="output"></div></br>
+    <input type="button" value="addparams" onclick="addParams(2,9)">
+    <input type="button" value="addVariables1" onclick="faddVariables1(1,['Apple','Ball'],2,3,4,5,'Five')"></br>
+    <input type="button" value="addVariables2" onclick="faddVariables2(1,2,3,4,5)"></br>
+    <input type="button" value="function variables" onclick="callOtherFunctions()"></br>
+
+</body>
+
+</html>

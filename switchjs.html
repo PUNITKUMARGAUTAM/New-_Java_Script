@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        const week = 'Wednesday';
+
+        switch (week) {
+
+            case 'Monday':
+                console.log("Today is monday");
+            // break;
+
+            case 'Tuesday':
+                console.log("Today is tuesday");
+            // break;
+
+            case 'Wednesday':
+                console.log("Today is wednesday");
+            // break;
+
+            default:
+                console.log("Not showing any day");
+
+        }
+
+        function daysInMonth() {
+            const monthno=Number(document.getElementById("t").value);
+            switch (monthno) {
+                case 1:
+                case 3:
+                case 5:
+                case 7:
+                case 8:
+                case 10:
+                case 12:
+                    console.log(31);
+                    break;
+                case 4:
+                case 6:
+                case 9:
+                case 11:
+                    console.log(30);
+                    break;
+                case 2:
+                    console.log("28/29");
+                    break;
+                default:
+                    console.log("Invalid");
+                    break;
+            }
+
+        }
+
+        function dayInWeek() {
+            const week =Number(document.getElementById('w1').value);
+            switch(week){
+                case 1:
+                    console.log("Sunday");
+                   break;
+                    case 2:
+                        console.log("Monday");
+                      break;
+                        case 3:
+                            console.log("Tuesday");
+                           break;
+                            case 4:
+                                console.log("Wednesday");
+                               break;
+
+                                case 5: 
+                                console.log("Thursday");
+                                break;
+
+                                case 6: 
+                                console.log("Friday");
+                                break;
+
+                                case 7:
+                                    console.log("Suturday");
+                                    break;
+
+                                    default:
+                                        console.log("Not in weekdays");
+            }
+
+        }
+
+    </script>
+    <input type="number" id="t">
+<button onclick="daysInMonth()">Days in Month</button>
+
+<input type = "number" id="w1">
+<button onclick="dayInWeek()">Days in Week </button>
+
+
+</body>
+
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Array Begining </title>
+</head>
+
+<body>
+
+    <p id="arr"></p>
+    <p id="mans"></p>
+    <p id="push"></p>
+    <p id="pop1"></p>
+    <p id="pop2"></p>
+    <input type="button" onclick="pushElement()">Push Element</button>
+    <input type="button" onclick="popElement()">Pop Element</button>
+    <input type="button" onclick="shiftElement()">Shift Element</button>
+    <input type="button" onclick="unshiftElement()">Unshift Element</button>
+    <input type="text">
+
+    <script>
+        //1 
+        // var fruits = ["Mango", "Apple", "Banana"];
+        // document.getElementById("arr").innerHTML = fruits.join("*");
+
+        //2
+        // const man = ["Raj", "Rahul", "Rohit"];
+        // let mn = man.length;
+
+        // text = "<ul>";
+        // for (let i = 0; i <mn; i++) {
+        //     text += "<li>" + man[i] + "</li>";
+        // }
+
+        // text += "</ul>"
+        // document.getElementById("mans").innerHTML = text;
+
+        //3
+
+        const lap = ["HP", "Lenovo", "Dell", "Apple"];
+        document.getElementById("push").innerHTML = lap;
+
+        function pushElement() {
+            lap.push("Accer");
+            document.getElementById("push").innerHTML = lap;
+        }
+
+        const game = ["Cricket", "Tenis", "Hockey", "Kabbadi"];
+        document.getElementById("pop1").innerHTML = game
+        function popElement() {
+            game.pop();
+            document.getElementById("pop1").innerHTML = game
+
+        }
+
+
+
+        const game1 = ["Cricket", "Tenis", "Hockey", "Kabbadi"];
+        document.getElementById("pop1").innerHTML = game
+
+        function shiftElement() {
+            game1.shift();
+            document.getElementById("pop1").innerHTML = game1
+
+        }
+
+        const game2 = ["Cricket", "Tenis", "Hockey", "Kabbadi"];
+        document.getElementById("pop1").innerHTML = game2
+
+        function unshiftElement() {
+            game2.unshift("ipl");
+            document.getElementById("pop1").innerHTML = game2;
+        }
+
+
+        const boys = ["Satish", "Raj", "Rahul", "Amit"];
+        const girls = ["Nidhi", "Sita", "Gita", "Rita"];
+
+        const boys2 = ["Rohit", "Rajan", "Sanjay"];
+
+
+        const myChild = boys.concat(girls, boys2);
+        document.getElementById("pop2").innerHTML = myChild;
+
+        const fruits = ["Banana", "Orange", "Apple", "Mango"];
+        document.getElementById("pop2").innerHTML = fruits;
+
+        fruits.splice(2, 0, "Lemon", "Kiwi");
+        document.getElementById("pop2").innerHTML = fruits;
+
+    </script>
+
+
+
+</body>
+
+</html>

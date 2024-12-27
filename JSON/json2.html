@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+var book={
+    name:"JS Basics",
+    price:100,
+    discountedprice:function(){return this.price-10;}
+};
+function show()
+{
+console.log(book.name);
+console.log(book["price"]);
+var str=JSON.stringify(book);
+console.log(str);
+str=JSON.parse(str);
+console.table(str);
+console.log(book.discountedprice());
+}
+    </script>
+</head>
+<body>
+    <button onclick="show()" type="button">Show the Book</button>
+</body>
+</html>

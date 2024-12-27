@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tag Name </title>
+
+    <style>
+
+.blue
+{
+    background-color: blue;
+}
+
+.green
+{
+    background-color: green;
+}
+
+
+    </style>
+    <script>
+     
+     function findData()
+     {
+        var elements = document.getElementsByTagName('div');
+        var n= elements.length;
+        for(var i=0; i<=n-1; i++)
+     {
+        elements[i].innerHTML = "Div"
+     }
+      
+     var elements = document.getElementsByTagName('p');
+        var n= elements.length;
+        for(var i=0; i<=n-1; i++)
+     {
+        elements[i].innerHTML = "Paragraph"
+     }
+
+     }
+
+    </script>
+</head>
+<body>
+
+    <input type="button" onclick="findData()" value="traverse">
+
+    <div></div>
+    <p></p>
+
+
+    
+    <div></div>
+    <p></p>
+</body>
+</html>

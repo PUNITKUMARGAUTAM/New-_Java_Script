@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>about json</title>
+
+    <script>
+
+        var lappy =
+        {
+            name: "Lenovo",
+            brand: "lenovo x++",
+            price: 550000,
+            window: 11,
+            version: 21,
+
+            discountPrice: function()
+            { 
+                return this.price - 20;
+            }
+
+        }
+
+        function laptop()
+        {
+            console.log(lappy.name);
+            console.log(lappy["version"]);
+
+            var cis = JSON.stringify(lappy);
+            console.log(cis);
+
+            var cip = JSON.parse(cis);
+            console.log(cip);
+            console.log(lappy.discountPrice())
+
+
+        }
+
+
+    </script>
+</head>
+
+<body>
+
+ <button type="button" onclick="laptop()">Laptop Details</button>
+
+</body>
+
+</html>

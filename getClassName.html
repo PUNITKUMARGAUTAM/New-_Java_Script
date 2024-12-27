@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+     .blue
+     {
+        background-color: blue;
+     }
+
+     .green
+     {
+        background-color: green;
+     }
+     
+
+    </style>
+</head>
+<body>
+
+  
+
+    <input type="text" class="blue">
+    <input type="text" class="green">
+    <input type="text" class="blue">
+
+    <input type="button" onclick="traverse()" value="Traverse">
+    
+</body>
+
+<script>
+
+function traverse()
+{
+
+    var textbox = document.getElementsByClassName("blue");
+    var n= textbox.length;
+    for(var i=0; i<=n-1; i++)
+{
+    textbox[i].value = "Blue";
+}
+
+
+var textbox = document.getElementsByClassName("green");
+    var n= textbox.length;
+    for(var i=0; i<=n-1; i++)
+{
+    textbox[i].value = "Green";
+}
+
+}
+
+
+
+</script>
+
+</html>

@@ -1,23 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <h>Hello1</h>
+    <input type="text" value="Hello" id="inp">
+    <button onclick="fLog()">Log</button>
 
-    <button onclick="f()">Click Here</button>
+    <button onclick="fWarn()">Warn</button>
+    <button onclick="fInfo()">Info</button>
+    <button onclick="err()">Err</button>
+    <button onclick="deg()">Debug</button>
+    <input type="button" onclick="fInput()" value="Input">
+    
+    <input type="text" value="" id="res">
+    <input type="text" value="">
+    <input type="text" value="">
+    <button onclick="result()">Add Data</button>
 
 
     <script>
-function f()
-{
-    console.log("Hello");
-}
+       
+       function result()
+       {
+        const output = document.getElementById('res');
+        console.log(output);
+       }
 
+        function fInput() {
+            const x = document.getElementById("inp");
+            x.value = "Changed";
+            console.dir(x);
+        }
+
+
+        function fLog() {
+
+            console.log("Log");
+        }
+        function fWarn() {
+
+            console.warn("Warn");
+        }
+
+        function fInfo() {
+
+            console.info("Info");
+        }
+
+        function err() {
+            console.log("Error");
+        }
+
+        function deg() {
+            console.log("Debugging")
+        }
+
+
+        let student =
+            [
+                {
+                    name: "Aman",
+                    age: 25,
+                    edu: "B.Tech"
+                }
+            ];
+        console.table(student);
+
+
+        let laptop =
+            [
+                {
+                    lap1: "HP",
+                    lap2: "Lenovo",
+                    lap3: "Dell"
+                }
+            ];
+        console.dir(laptop);
     </script>
-    
+
 </body>
+
 </html>

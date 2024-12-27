@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Processing</title>
+    <style>
+
+
+    </style>
+
+</head>
+<body>
+    <h1>Array Processing</h1>
+    <h1 id="output"></h1>
+    <h2>Number</h2>
+    <input type="text" id="input"><br>
+    <input type="button" onclick="pushElement()" value="Push Element">
+    <input type="button" onclick="popElement()" value ="Pop Element">
+    <input type="button" onclick="shiftElement()" value ="Shift Element">
+    <input type="button" onclick="unShiftElement()" value ="Un Shift Element">
+    <script>
+let myarray=[1,2,3];
+const output=document.getElementById("output");
+const input=document.getElementById("input");
+function showArray()
+{
+    let str='';
+    let n=myarray.length;
+    for(let i=0;i<=n-1;i++)
+{
+    str+=`${myarray[i]},`;
+}
+output.textContent=str;
+}
+
+function pushElement()
+{
+ const data=input.value;
+ myarray.push(data);
+ input.value="";
+ input.focus();
+ showArray();
+}
+
+function popElement()
+{
+   const popData = input.value;
+   myarray.pop(popData);
+   input.focus();
+   showArray(); 
+}
+
+function shiftElement()
+{
+    const shiftData = input.value;
+    myarray.shift();
+    input.focus();
+    showArray();
+}
+
+function unShiftElement()
+{
+    const unshiftData = input.value;
+    myarray.unshift(unshiftData);
+    input.focus();
+    showArray();
+}
+
+showArray();
+
+
+const date = new Date();
+console.log(date);
+
+const d = "Data is displayed";
+//alert(d);
+prompt(d);
+    </script>
+</body>
+</html>

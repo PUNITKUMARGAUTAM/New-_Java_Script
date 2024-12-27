@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Element ByID </title>
+</head>
+<body>
+
+    <input type = "text" id="sw1">
+    <br>
+    <input type = "text" id="sw2">
+    <br>
+<input type="button" onclick="doSwap()" value="swap">
+    <script>
+    
+    function doSwap()
+    {
+        var x = document.getElementById("sw1");
+        var y = document.getElementById("sw2");
+
+        var t = x.value;
+        x.value = y.value;
+        y.value = t; 
+    }
+
+
+    </script>
+    
+</body>
+</html>
