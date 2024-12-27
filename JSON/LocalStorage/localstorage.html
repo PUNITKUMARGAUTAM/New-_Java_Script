@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Storage</title>
+</head>
+<body>
+
+
+    <h1> Local Storage </h1>
+    
+    <input id="txt" type="text" placeholder="Please input the data"><br>
+
+    <br>
+    <button onclick="createData()">Create Data </button><br>
+    <br>
+    <button onclick="retrieveData()">Retrieve</button><br>
+    <br>
+    <button onclick="clearData()">Clear Data</button><br>
+    <br>
+    <button onclick="removeData()">Remove Data</button><br>
+    <br>
+
+    <p id="op"></p>
+
+    <script>
+        const txt=document.getElementById("txt");
+        const op=document.getElementById("op");
+
+      function createData()
+      {
+
+        const value=txt.value;
+        localStorage.setItem("name" , value);
+        
+
+        op.innerHTML = "Data Stored Successfully";
+
+      }
+
+      function retrieveData()
+      {
+        txt.value=localStorage.getItem("name");
+        op.innerHTML = "Data read Successfully";
+      }
+
+      function clearData()
+
+      {
+        
+        localStorage.clear();
+        document.getElementById("op").innerHTML = "Local Storage Data Cleared Successsfully";
+      }
+
+      function removeData()
+      {
+        localStorage.removeItem("name");
+        op.innerHTML = "Item Remove Successsfully";
+        
+      }
+
+
+
+    </script>
+    
+</body>
+</html>

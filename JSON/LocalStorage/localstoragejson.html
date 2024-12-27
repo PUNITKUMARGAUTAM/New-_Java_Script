@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Storage JSON</title>
+</head>
+
+<body>
+
+    <h1>Local Storage JSON</h1>
+
+    Player Name : <input type="text" placeholder="Please Input Player" id="text1"><br>
+    <br>
+    Player Score : <input type="text" placeholder="Please Input Score" id="text2">
+
+    <button onclick="addRecord()"> Add Record </button>
+    <p id="loc"></p>
+
+    <script>
+
+        var py = [];
+        function addRecord() {
+            alert("Hello");
+            const player1 = text1.value;
+
+            const score1 = Number(text2.value);
+
+            var players =
+            {
+
+                name: player1,
+                score: score1
+
+            }
+            py.push(players);
+            var data = JSON.stringify(py);
+            console.table("Player Record == " + players);
+            localStorage.setItem("players", data);
+
+            document.getElementById("loc").innerHTML = " Data created ";
+
+        }
+
+        function readRecord() {
+            let x = localStorage.getItem("players");
+            if (x == null) {
+                py = [];
+                return;
+            }
+            x = JSON.parse(x);
+            py = x;
+
+
+        }
+        readRecord();
+    </script>
+
+
+
+
+</body>
+
+</html>
