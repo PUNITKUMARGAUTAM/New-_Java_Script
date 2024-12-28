@@ -4,11 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather API </title>
+    <title>Weather API</title>
     <style>
         .punit_success {
             color: darkgreen;
-            
             margin-top: 20px;
             padding: 10px;
             border: 1px solid green;
@@ -17,7 +16,6 @@
 
         .punit_error {
             color: red;
-            
             margin-top: 20px;
             padding: 10px;
             border: 1px solid red;
@@ -25,95 +23,93 @@
         }
 
         body {
-
             font-family: Georgia, 'Times New Roman', Times, serif;
             margin: 20px;
-
         }
 
         #opp {
-
             margin-top: 20px;
             padding: 10px;
             border: 1px solid red;
             border-radius: 5px;
-
         }
     </style>
-
 </head>
 
-<script>
-    function fetchWeatherData() {
-        const apiid = "b1314c78e5b65729a1b4dc4b2263a4a9";
-        const units = "metric";
-
-        const city = document.getElementById('cityInput').value;
-        //document.getElementById("myH1").style.color = "#ff0000";
-
-        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiid}&units=${units}`)
-            .then(response => response.json())
-            .then(data => {
-                // Process the weather data from the API response
-                console.log("First");
-                // alert(data.cod);
-                if (data.cod == 200)
-
-                    displayWeatherData(data);
-                else
-                    displayError(data);
-
-            })
-            .catch(error => {
-                // Handle any errors that occur during the API call
-                console.error('Error:', error);
-                console.table(error);
-                displayError(error);
-            });
-    }
-
-    function displayError(error) {
-        
-        weatherDataContainer.innerHTML = error.message  +  error.cod;
-        weatherDataContainer.classList.remove("punit_error");
-        weatherDataContainer.classList.remove("punit_success");
-        weatherDataContainer.classList.add("punit_error");
-        document.getElementById("myH1").style.color = "#ff0000";
-    }
-    function displayWeatherData(data) {
-        
-        weatherDataContainer.innerHTML = `Temp: ${data.main.temp}<br>`;
-        weatherDataContainer.innerHTML += `Humidity: ${data.main.humidity}<br>`;
-        weatherDataContainer.innerHTML += `Icon:<img src="https://openweathermap.org/img/w/${data.weather[0].icon}.png"/> <br>`;
-        weatherDataContainer.classList.remove("punit_error");
-        weatherDataContainer.classList.remove("punit_success");
-        weatherDataContainer.classList.add("punit_success");
-        document.getElementById("myH1").style.color = "green";
-    }
-
-</script>
-
 <body>
+    <h1 id="myH1">Check Weather Based on City</h1>
 
-   
-    <h1 id = "myH1"> Check Weather Based on City </h1>
-
-
-    <input type="text" placeholder="Please Enter your City Name" id="cityInput">
-
+    <input type="text" placeholder="Please Enter your City Name" id="cityInput" list="dl">
     <button onclick="fetchWeatherData()">Search City Weather</button>
 
-  
-
     <div id="weatherData"></div>
-
     <div id="op"></div>
 
     <img src="Punit RRB Photo.jpg" width="20%" height="20%">
-<script>
-    const weatherDataContainer = document.getElementById('op');
 
-</script>
+    <datalist id="dl"></datalist>
+
+    <script>
+        const apiid = "b1314c78e5b65729a1b4dc4b2263a4a9";
+        const units = "metric";
+        const weatherDataContainer = document.getElementById('op');
+        const datalist = document.getElementById("dl");
+
+        function fetchWeatherData() {
+            const city = document.getElementById('cityInput').value.trim();
+            if (!city) {
+                alert("Please enter a city name!");
+                return;
+            }
+
+            fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiid}&units=${units}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.cod === 200) {
+                        if (!isCityInDatalist(city)) {
+                            addCityToDatalist(city);
+                        }
+                        displayWeatherData(data);
+                    } else {
+                        displayError(data);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    displayError(error);
+                });
+        }
+
+        function isCityInDatalist(city) {
+            return Array.from(datalist.options).some(option => option.value.toLowerCase() === city.toLowerCase());
+        }
+
+        function addCityToDatalist(city) {
+            const option = document.createElement("option");
+            option.value = city;
+            datalist.appendChild(option);
+        }
+
+        function displayError(error) {
+            weatherDataContainer.innerHTML = `Error: ${error.message || "City not found"} (Code: ${error.cod || "Unknown"})`;
+            weatherDataContainer.classList.remove("punit_success");
+            weatherDataContainer.classList.add("punit_error");
+            document.getElementById("myH1").style.color = "#ff0000";
+        }
+
+        function displayWeatherData(data) {
+            weatherDataContainer.innerHTML = `
+                <strong>City:</strong> ${data.name}<br>
+                <strong>Temperature:</strong> ${data.main.temp} °C<br>
+                <strong>Humidity:</strong> ${data.main.humidity}%<br>
+                <strong>Weather:</strong> ${data.weather[0].description}<br>
+                <img src="https://openweathermap.org/img/w/${data.weather[0].icon}.png" alt="Weather Icon">
+            `;
+            weatherDataContainer.classList.remove("punit_error");
+            weatherDataContainer.classList.add("punit_success");
+            document.getElementById("myH1").style.color = "green";
+        }
+    </script>
 </body>
 
 </html>

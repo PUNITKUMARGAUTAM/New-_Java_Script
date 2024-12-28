@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate QR Code </title>
+</head>
+
+<body>
+
+    <h1> QR Code Explanation </h1>
+
+    <input type="text" placeholder="Please enter data" id="generatebtn">
+  
+    <button onclick="generatedBtn()" id="generatedBtnId">GenerateQR</button>
+    <button onclick="downloadQr()" id="downloadQr" style="display: none;">Download QR</button>
+    <button onclick="textinput()" id="textinput">Text Input QR</button>
+    <button onclick="qrcode()" id="qrcode"> QR Code</button>
+
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.4.4/build/qrcode.min.js"></script>
+
+    <script>
+        const generateBtn = document.getElementById("generatedBtnId");
+        const downloadBtn = document.getElementById("downloadQr");
+        const textInput = document.getElementById("generatebtn");
+        const qrCode = document.getElementById("qrcode");
+        let generatedCanvas = null;  // variable to store the generated canvas
+
+        function generatedBtn() {
+            const text = textInput.value.trim();
+            if (text) {
+                qrCode.innerHTML = " "; // Clear any previous QR code
+                downloadBtn.style.display = 'none';
+
+                const canvas = document.createElement("canvas");
+                QRCode.toCanvas(canvas, text, {
+                    width: 250,
+                    margin: 2,
+                    errorCorrectionLevel: "H"
+                }, function (error) {
+                    if (error) {
+                        console.error(error);
+                    }
+                });
+
+                qrCode.appendChild(canvas);
+                downloadBtn.style.display = 'inline-block';
+                generatedCanvas = canvas;
+
+                // Adding Logo after QR code is generated
+                const logo = new Image();
+                logo.src = 'Punit RRB Photo.jpg';
+                logo.onload = function () {
+                    const ctx = canvas.getContext('2d');
+                    const logoSize = 50;
+                    const centerX = (canvas.width - logoSize) / 2;
+                    const centerY = (canvas.height - logoSize) / 2;
+                    ctx.drawImage(logo, centerX, centerY, logoSize, logoSize);
+                };
+            } else {
+               // alert('Please enter text to generate the QR code.');
+            }
+        }
+
+        // Download QR Code
+        function downloadQr() {
+            if (generatedCanvas) {
+                const link = document.createElement('a');
+                link.href = generatedCanvas.toDataURL();
+                link.download = "qrcode.png";
+                link.click();
+            }
+        }
+    </script>
+
+</body>
+
+</html>

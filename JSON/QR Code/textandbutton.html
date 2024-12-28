@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    Text : <input list="dl" type="text" id="get">
+    <datalist id="dl">
+     
+    </datalist>
+    <button onclick="getText()"> Get Data </button>
+
+    <script>
+        const gr = document.getElementById("get");
+        const dl = document.getElementById("dl");
+
+        function getText() {
+            let newelement = document.createElement("option");
+            newelement.value = gr.value;
+            dl.appendChild(newelement);
+
+
+
+
+        }
+
+    </script>
+       <!-- <option value="Ajay">
+        <option value="Aakash">
+        <option value="Ashish">
+        <option value="Bhadohi"> -->
+
+</body>
+
+</html>
