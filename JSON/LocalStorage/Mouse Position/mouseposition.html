@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Input and Images</title>
+    <style>
+        .newplacement {
+            position: absolute;
+        }
+
+        .myDiv {
+            height: 100%;
+            width: 100%;
+        }
+
+        .Cell {
+            display: table-cell;
+            border: solid;
+            border-width: thin;
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+        .Heading {
+            display: table-row;
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <p>This is a Table for Input and Image</p>
+
+    <div class="myDiv">
+        <div class="Heading">
+            <div class="Cell">
+                <p>Input</p>
+            </div>
+            <div class="Cell">
+                <p>Image</p>
+            </div>
+            <div class="Cell">
+                <p>Image1</p>
+            </div>
+            <div class="Cell">
+                <p>Image2</p>
+            </div>
+        </div>
+    </div>
+
+    <br><br>
+
+    <button onclick="selectAction('input')">INPUT1</button>
+    <button onclick="selectAction('input')">INPUT2</button>
+    <button onclick="selectAction('input')">INPUT3</button>
+    <button onclick="selectAction('image1')">IMAGE 1</button>
+    <button onclick="selectAction('image2')">IMAGE 2</button>
+    <button onclick="selectAction('image3')">IMAGE 3</button>
+
+    <script>
+        let newObjectType = '';
+        let imagesrc = ''; 
+
+        function selectAction(actionType) {
+            if (actionType.startsWith('image')) {
+                newObjectType = 'image';
+                
+                if (actionType === 'image1') {
+                    imagesrc = 'pics/punit.jpg';
+                } else if (actionType === 'image2') {
+                    imagesrc = 'pics/flower.jpg';
+                } else if (actionType === 'image3') {
+                    imagesrc = 'pics/water.jpg';
+                }
+            } else if (actionType === 'input') {
+                newObjectType = 'input';
+            }
+            console.log(`Selected action: ${newObjectType}, Image Source: ${imagesrc}`);
+        }
+
+        
+        document.addEventListener('mouseup', function (event) {
+            if (!newObjectType) return;
+
+            if (newObjectType === 'input') {
+            
+                const input = document.createElement("input");
+                input.type = "text";
+                input.classList.add("newplacement");
+                input.style.left = `${event.clientX}px`;
+                input.style.top = `${event.clientY}px`;
+                document.body.appendChild(input);
+            } else if (newObjectType === 'image') {
+              
+                const img = new Image(50, 50);
+                img.src = imagesrc; 
+                img.classList.add("newplacement");
+                img.style.left = `${event.clientX}px`;
+                img.style.top = `${event.clientY}px`;
+                document.body.appendChild(img);
+            }
+
+            
+            newObjectType = '';
+            imagesrc = '';
+        });
+
+        document.addEventListener('mousemove', function(event)
+    {
+
+        if(newObjectType === 'image')
+        console.log("Event X == " + `${event.clientX}px`);
+        console.log("Event Y == " + `${event.clientY}px`);
+    {
+       
+    }
+    });
+    </script>
+</body>
+
+</html>
